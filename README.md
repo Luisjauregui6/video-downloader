@@ -31,7 +31,7 @@ python thedownloader.py
 
 ## Screenshots
 
-![videodownloader screenshot](img/screenshot1.png)
+![videodownloader screenshot](img/Screenshot1.png)
 
 ## License 
 

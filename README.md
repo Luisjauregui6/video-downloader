@@ -29,6 +29,10 @@ python thedownloader.py
 4. Click "download".
 5. Wait for the video to download.
 
+## Screenshots
+
+![videodownloader screenshot](img/screenshot1.png)
+
 ## License 
 
 MIT License 

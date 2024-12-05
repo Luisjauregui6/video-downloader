@@ -10,7 +10,7 @@ Python program that allows the user to download videos using a URL with support 
 
 ## Installation and setup of FFmpeg
 For windows:
-1. Download FFmpeg here: https://ffmpeg.org/download.html
+1. Download FFmpeg here: https://ffmpeg.org/download.html](https://www.gyan.dev/ffmpeg/builds/
 2. Extract the zip file.
 3. **Open the start menu** and search for "Environment Variables".
 4. In the **System properties** window, click on **Environment Variables**.

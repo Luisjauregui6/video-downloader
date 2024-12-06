@@ -81,7 +81,7 @@ def handle_download_complete(d):
     if cancel_flag:
         download_speed = "Download cancelled"
     else:
-        download_speed = "Download complete"
+        download_speed = "Converting/merging formats, please wait..."
     root.after(0, lambda: speed_label.config(text=download_speed))
 
 def download_vid():
@@ -141,16 +141,24 @@ def download_vid():
     def run_download():
         global cancel_flag
         try:
+            # Start the download
             with yt_dlp.YoutubeDL(options) as ydl:
                 ydl.download([url])
+
+            # Update the status to "video downloaded"
+            root.after(0, lambda:speed_label.config(text="All done"))
 
             # Check if the video is in AV1 format, and if so, convert it
             input_video = f"{folder_path}/{name_vid}.mp4"
             output_video = f"{folder_path}/{name_vid}_converted.mp4"
 
+            # Verify if the video download requires to be converted
             if "av1" in input_video.lower():
+                root.after(0, lambda:speed_label.config(text="converting/merging..."))
                 # Convert AV1 to H.264 using FFmpeg to prevent the "file is not supported" message after download
                 ffmpeg.input(input_video).output(output_video, vcodec='libx264', acodec='aac').run()
+
+                root.after(0, lambda:speed_label.config(text="All done."))
                 messagebox.showinfo("Success", f"Your video has been converted and saved as {name_vid}_converted.mp4")
             else:
                 messagebox.showinfo("Success", f"Your video: {name_vid} has been downloaded")

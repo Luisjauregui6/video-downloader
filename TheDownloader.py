@@ -44,6 +44,7 @@ def toggle_dark_mode():
         dark_mode = True
         mode_button.config(image=light_mode_img)  # Change image to light mode
 
+# Format the time into a readable format
 def format_eta(eta):
     if eta > 60:
         minutes = eta // 60

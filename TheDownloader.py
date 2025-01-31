@@ -183,13 +183,23 @@ def cancel_download():
     else:
         messagebox.showinfo("Download Aborted", "No active download to cancel.")
 
+# Set context menu to allow user to paste URL's using mouse
+def show_context_mnu(event):
+    context_menu.post(event.x_root, event.y_root)
+context_menu = tk.Menu(root, tearoff=0)
+context_menu.add_command(label="paste URL", command=lambda: url_entry.insert(tk.END, root.clipboard_get()))  
+
+
 # URL label
-url_label = tk.Label(root, text="Enter a link: ")
+url_label = tk.Label(root, text="Paste a link: ")
 url_label.pack(pady=10)
 
 # URL entry field
 url_entry = tk.Entry(root, width=40)
 url_entry.pack(pady=10)
+
+# Set right mouse button to show context menu
+url_entry.bind("<Button-3>", show_context_mnu)
 
 # Video name label
 name_label = tk.Label(root, text="Name your video: ")
@@ -204,7 +214,7 @@ include_audio_var = tk.StringVar(value="audio")
 include_audio_radio_audio = tk.Radiobutton(root, text="Include audio", variable=include_audio_var, value="audio")
 include_audio_radio_audio.pack(pady=5)
 
-include_audio_radio_mute = tk.Radiobutton(root, text="No audio", variable=include_audio_var, value="no_audio")
+include_audio_radio_mute = tk.Radiobutton(root, text="Don't include audio", variable=include_audio_var, value="no_audio")
 include_audio_radio_mute.pack(pady=5)
 
 # Start download button

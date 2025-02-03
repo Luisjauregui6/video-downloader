@@ -164,6 +164,10 @@ def download_vid():
             else:
                 messagebox.showinfo("Success", f"Your video: {name_vid} has been downloaded")
 
+            #Clear the URL & Video name fields after a sucessfull download
+            root.after(0, lambda: url_entry.delete(0, tk.END))
+            root.after(0, lambda: name_entry.delete(0, tk.END))    
+
         except yt_dlp.utils.DownloadError as e:
             messagebox.showerror("Download Error", f"Download failed: {str(e)}")
         except Exception as e:

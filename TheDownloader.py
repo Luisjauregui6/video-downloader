@@ -92,19 +92,24 @@ def download_vid():
     url = url_entry.get()
     name_vid = name_entry.get().strip()
 
+    # If the user does not provide a URL display an error
     if not url:
         messagebox.showerror("Error", "Please provide a valid URL.")
         return
 
+    # If user does not provide a name for the video display error
     if not name_vid:
         messagebox.showerror("Error", "Please enter a name for the video.")
         return
 
-    folder_path = filedialog.askdirectory(title="Where to save?")
+    # Let the user choose where to save the video
+    folder_path = filedialog.askdirectory(title="Select a folder to save your video")
     if not folder_path:
+        # If a folder was not selected to save the video, display an error
         messagebox.showerror("Error", "Please select a folder to save the video.")
         return
 
+    # Avoid these symbols in the name of the video
     folder_path = folder_path.replace("\\", "/")
     name_vid = re.sub(r'[<>:"/\\|?*]', '_', name_vid.strip())
 
